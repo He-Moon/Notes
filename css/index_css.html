@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /*鼠标悬浮div1, 显示'ceshi'*/
+        .div1 {
+            width: 100%;
+            border: 1px solid red;
+            position: relative;
+        }
+
+        .div1:hover:after {
+            content: attr(test-data);
+            position: absolute;
+            font-size: 12px;
+            width: 200%;
+            line-height: 30px;
+            left: 0;
+            top: 25px;
+            border: 1px solid green;
+        }
+
+        /*表单验证，利用css伪类修改样式*/
+        .container > .row > form > .form-group {
+            width: 32rem;
+            padding: 1rem;
+            border: 1px solid transparent;
+        }
+
+        .container > .row > form > .form-group:hover {
+            border-color: #eee;
+            transition: border .2s;
+        }
+
+        .container > .row > form > .form-group:hover > label {
+            display: block;
+            font-weight: normal;
+        }
+
+        input, textarea {
+            display: block;
+            width: 100%;
+            line-height: 2rem;
+            padding: 0.5rem 0.5rem 0.5rem 1rem;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        input:valid, textarea:valid {
+            border-color: #429932;
+            box-shadow: inset 5px 0 0 #429932;
+        }
+
+        input:invalid, textarea:invalid {
+            border-color: #d61d1d;
+            box-shadow: inset 5px 0 0 #d61d1d;
+        }
+
+        /*table表格红绿相间*/
+        table > tbody > tr:nth-of-type(2n) {
+            background-color: red;
+        }
+
+        table > tbody > tr:nth-of-type(2n+1) {
+            background-color: green;
+        }
+
+        /*选择5-10的子元素*/
+        table > tbody > tr:nth-child(n+5):nth-child(-n+10) {
+            background-color: gray;
+        }
+
+        /*实现鼠标悬浮内容自动撑开的过渡动画*/
+        .bd {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 1s ease-out;
+        }
+
+        ul > li:hover > .bd {
+            max-height: 600px;
+            transition-timing-function: ease-in;
+        }
+
+        /*
+        利用 pointer-events 禁用 a 标签事件效果
+        鼠标指针没有变成小手，点击也不会跳转了。
+        */
+        .active {
+            pointer-events: none;
+        }
+
+        /*字体两端对齐*/
+        .div2 > div {
+            margin: 10px 0;
+            width: 100px;
+            border: 1px solid red;
+            text-align-last: justify;
+        }
+
+        .nav > li {
+            list-style: none;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .nav > li:not(:last-child):after {
+            content: ',';
+        }
+
+        .nav > li:not(:nth-child(-n+3)) {
+            color: #d61d1d;
+        }
+
+        /*美化radio*/
+        .radio-beauty-container {
+            font-size: 0;
+        }
+
+        .radio-beauty-container > label > .radio-name {
+            vertical-align: middle;
+            font-size: 16px;
+        }
+
+        .radio-beauty-container > label > .radio-beauty {
+            width: 18px;
+            height: 18px;
+            box-sizing: border-box;
+            display: inline-block;
+            border: 1px solid green;
+            vertical-align: middle;
+            margin: 0 15px 0 3px;
+            border-radius: 50%;
+        }
+
+        .radio-beauty-container > label > .radio-beauty:hover {
+            box-shadow: 0 0 7px green;
+            padding: 2px;
+            background-color: green;
+            background-clip: content-box;
+        }
+
+        input[type='radio']:checked + .radio-beauty {
+            padding: 2px;
+            background-color: green;
+            background-clip: content-box;
+        }
+
+        /*改变input 焦点光标颜色*/
+        input {
+            caret-color: auto;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        input.custom {
+            caret-color: red;
+        }
+    </style>
+</head>
+<body>
+<!--鼠标悬浮div1, 显示'ceshi'-->
+
+<div class="div1" test-data="ceshi">
+
+</div>
+
+<!--表单验证，利用css伪类修改样式-->
+
+<div class="container">
+    <div class="row" style="margin-top: 2rem">
+        <form>
+            <div class="form-group">
+                <label>name</label>
+                <input type="text" required placeholder="please enter your name">
+            </div>
+            <div class="form-group">
+                <label>email</label>
+                <input type="email" required placeholder="please enter your email">
+            </div>
+            <div class="form-group">
+                <label>homepage</label>
+                <input type="url" placeholder="please enter your blog's url">
+            </div>
+            <div class="form-group">
+                <label>comments</label>
+                <textarea required></textarea>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--table表格红绿相间 & 选择5-10的子元素-->
+
+<table>
+    <tbody>
+    <tr>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>6</td>
+    </tr>
+    </tbody>
+</table>
+
+<!--实现鼠标悬浮内容自动撑开的过渡动画-->
+
+<ul>
+    <li>
+        <div class="hd">列表1</div>
+        <div class="bd">列表内容<br>内容列表内容<br>内容列表内容<br>内容</div>
+    </li>
+    <li>
+        <div class="hd">列表1</div>
+        <div class="bd">列表内容<br>内容列表内容<br>内容列表内容<br>内容</div>
+    </li>
+    <li>
+        <div class="hd">列表1</div>
+        <div class="bd">列表内容<br>内容列表内容<br>内容列表内容<br>内容</div>
+    </li>
+</ul>
+
+<ul>
+    <li><a class="tab" href="https://www.google.com">google</a></li>
+    <li><a class="tab active" href="https://facebook.com">google</a></li>
+    <li><a class="tab" href="https://stackoverflow.com">google</a></li>
+</ul>
+
+<!--字体两端对齐-->
+
+<div class="div2">
+    <div>姓名</div>
+    <div>手机号码</div>
+    <div>验证码</div>
+    <div>帐号</div>
+    <div>密码</div>
+</div>
+
+<!--:not()选择器-->
+
+<ul class="nav">
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+    <li>d</li>
+    <li>e</li>
+</ul>
+
+<!--美化radio-->
+
+<div class="radio-beauty-container">
+    <label>
+        <span class="radio-name">前端工程师</span>
+        <input type="radio" name="radioName" id="radioName1" hidden>
+        <label for="radioName1" class="radio-beauty"></label>
+    </label>
+    <label>
+        <span class="radio-name">后端工程师</span>
+        <input type="radio" name="radioName" id="radioName2" hidden>
+        <label for="radioName2" class="radio-beauty"></label>
+    </label>
+    <label>
+        <span class="radio-name">全栈工程师</span>
+        <input type="radio" name="radioName" id="radioName3" hidden>
+        <label for="radioName3" class="radio-beauty"></label>
+    </label>
+</div>
+
+<!--改变input 焦点光标颜色-->
+
+<div class="div3">
+    <input type="text" value="This field uses a default caret.">
+    <input class="custom" value="I have a custom caret color!">
+</div>
+
+</body>
+</html>
